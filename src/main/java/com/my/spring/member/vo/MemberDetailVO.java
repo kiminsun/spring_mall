@@ -8,6 +8,7 @@ public class MemberDetailVO {
 	   private String cpon_name;
 	   private Date cpon_cre_date;
 	   private Date cpon_del_date;
+	   private int member_code;
 	   
 	   public int getDiscount_per() {
 	      return discount_per;
@@ -39,6 +40,12 @@ public class MemberDetailVO {
 	   public void setCpon_del_date(Date cpon_del_date) {
 	      this.cpon_del_date = cpon_del_date;
 	   }
+	   public int getMember_code() {
+			return member_code;
+		}
 	   
+		public void setMember_code(int member_code) {
+			this.member_code = member_code;
+		}
 
 }

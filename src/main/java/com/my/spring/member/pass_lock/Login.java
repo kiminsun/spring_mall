@@ -13,9 +13,9 @@ public class Login {
 		String pw2 = "";
 		
 		sha = SHA256.getInsatnce();
-		//1Â÷ ¾ÏÈ£È­
+		//1ï¿½ï¿½ ï¿½ï¿½È£È­
 		pw1 = sha.getSha256(vo.getMember_pwd().getBytes());
-		//2Â÷ ¾ÏÈ£È­
+		//2ï¿½ï¿½ ï¿½ï¿½È£È­
 		pw2 = BCrypt.hashpw(pw1, BCrypt.gensalt());
 		
 		vo.setMember_pwd(pw1);
@@ -23,7 +23,7 @@ public class Login {
 		
 		return vo;
 	}
-	//ºñÈ¸¿ø Àü¿ë
+	//ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public NonMemberVO password_Lock_non(NonMemberVO vo)throws Exception{
 		String pw1 = "";
 		String pw2 = "";
@@ -47,15 +47,17 @@ public class Login {
 		
 		pw = sha.getSha256(password.getBytes());
 		
+		//System.out.println(pw);
+		
 		if(vo.getMember_pwd().equals(pw)) {
 			
 			if(BCrypt.hashpw(pw, vo.getMember_pwd_lock()).equals(vo.getMember_pwd_lock())) {
-				return vo;//ÀÏÄ¡ÇÑ´Ù¸é »ç¿ëÀÚÀÇ Á¤º¸ return
+				return vo;//ï¿½ï¿½Ä¡ï¿½Ñ´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ return
 			}
 		}else {}
 		
 		
-		return new MemberVO();//ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö¾ÊÀ»¶© °ªÀ» ÃÊ±âÈ­ ½ÃÄÑ¼­ return
+		return new MemberVO();//ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½Ñ¼ï¿½ return
 	}
 	
 	public NonMemberVO password_Confirm_non(NonMemberVO vo , String password) throws Exception {
@@ -68,11 +70,11 @@ public class Login {
 		if(vo.getNonmember_pwd().equals(pw)) {
 			
 			if(BCrypt.hashpw(pw, vo.getNonmember_pwd_lock()).equals(vo.getNonmember_pwd_lock())) {
-				return vo;//ÀÏÄ¡ÇÑ´Ù¸é »ç¿ëÀÚÀÇ Á¤º¸ return
+				return vo;//ï¿½ï¿½Ä¡ï¿½Ñ´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ return
 			}
 		}else {}
 		
 		
-		return new NonMemberVO();//ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö¾ÊÀ»¶© °ªÀ» ÃÊ±âÈ­ ½ÃÄÑ¼­ return
+		return new NonMemberVO();//ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½Ñ¼ï¿½ return
 	}
 }

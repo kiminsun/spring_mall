@@ -97,6 +97,7 @@ public class MemberVO {
 		return member_code;
 	}
 
+ 
 	public void setMember_code(int member_code) {
 		this.member_code = member_code;
 	}
@@ -325,9 +326,7 @@ public class MemberVO {
 		this.member_birth_sl = member_birth_sl;
 	}
 
-	public void setMember_code(Integer member_code) {
-		this.member_code = member_code;
-	}
+	
 
 	@Override
 	public String toString() {

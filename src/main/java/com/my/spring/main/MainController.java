@@ -78,8 +78,10 @@ public class MainController {
 		map.put("keyword_detail", "자켓");
 		List<ProductVO> productlist_jk = productService.productlist(map);
 		
+		if (productlist_jk.size() >0) {
 		list[1] = Ctf.product_Color_List(productlist_jk);
 		indexlist[1] = list[1].get(0).getIndex_list();
+		}
 		List<ProductVO> jklist = new ArrayList<ProductVO>();
 		for(Integer indexnum : indexlist[1]) {
 			jklist.add(list[1].get(indexnum));

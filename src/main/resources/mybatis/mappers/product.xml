@@ -64,7 +64,7 @@
        </if>
         group by pro_code ,pro_category_detail) pd
        where   
-        p_img.pro_code = p.pro_code and p_img.pro_imagefilename like '%main%' and
+        p_img.pro_code = p.pro_code and p_img.pro_imagefiletype like '%main%' and
        p.pro_code = pd.pro_code and pd.pro_category_detail like #{keyword_detail}
        and p.pro_status like #{pro_status}
        <if test="keyword2 !=null and !keyword2.equals('')" >

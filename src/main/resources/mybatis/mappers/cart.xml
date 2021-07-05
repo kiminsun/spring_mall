@@ -6,6 +6,7 @@
 	<mapper namespace="mapper.cart">
 		<resultMap type="CartVO" id="CartResult">
 			<result property="cart_pro_code" column="cart_pro_code"/>
+			<result property="cart_pro_detail_code" column="cart_pro_detail_code"/>
 			<result property="cart_member_code" column="cart_member_code"/>
 			<result property="cart_nonmember_code" column="cart_nonmember_code"/>
 			<result property="cart_pro_quantity" column="cart_pro_quantity"/>
@@ -17,16 +18,9 @@
 		
 
 		<insert id="addcart" parameterType="CartVO">
-			insert into cart values(#{cart_pro_code},
-									#{cart_pro_detail_code},
-									<choose>
-										<when test="cart_member_code == 0">null,</when>
-										<otherwise>#{cart_member_code},</otherwise>
-									</choose>
-									<choose>
-										<when test="cart_nonmember_code == 0">null,</when>
-										<otherwise>#{cart_nonmember_code},</otherwise>
-									</choose>									
+			insert into cart (cart_pro_code,cart_pro_detail_code,cart_member_code,cart_pro_quantity,cart_pro_color,cart_pro_size,cart_pro_price ) 
+			values(#{cart_pro_code},
+									#{cart_pro_detail_code},#{cart_member_code},
 									#{cart_pro_quantity},
 									#{cart_pro_color},
 									#{cart_pro_size},
@@ -48,7 +42,7 @@
 					c.cart_nonmember_code  </if>
 					= #{code} order by c.cart_pro_detail_code) cart ,
 			 product_image img , product p
-				where cart.cart_pro_code = img.pro_code and img.pro_imagefilename like '%main%'
+				where cart.cart_pro_code = img.pro_code and img.pro_imagefiletype like '%main%'
 				and cart.cart_pro_code = p.pro_code 
 				<if test="cart_pro_detail_code !=null ">
 				and cart.cart_pro_detail_code =#{cart_pro_detail_code}

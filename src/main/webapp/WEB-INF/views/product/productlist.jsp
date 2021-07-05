@@ -23,9 +23,7 @@ input[name=list_type]:hover+label {
 	font-size: 15px;
 }
 </style>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <style>
 #content {

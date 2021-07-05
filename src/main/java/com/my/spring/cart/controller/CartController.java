@@ -43,8 +43,11 @@ public class CartController {
 	@RequestMapping(value="/addcart.do" ,method=RequestMethod.POST)
 	public ResponseEntity addcart(@ModelAttribute("cartvo") CartVO vo,@RequestParam("result") String result,
 									@RequestParam("code") int code, @RequestParam("col") String col) {
-		
+		// code 
+		// vo 할것
 		ResponseEntity resEtn = null;
+		System.out.println("col:" + col) ;
+		System.out.println("code:" + code) ;
 		if(col.equals("member"))
 			vo.setCart_member_code(code);
 		else if(col.equals("nonmember"))

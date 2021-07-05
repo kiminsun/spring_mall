@@ -50,7 +50,7 @@
  	<insert id="insertNewOrder" parameterType="java.util.Map">
 	
  	<choose>
- 		<when test="order_pro_detail_code !=null">
+ 		<when test="order_pro_detail_code !=null">	 		
  			insert into order_info values(SEQ_ORDER_ID.nextval,#{order_member_id},#{order_member_name},
 									#{order_pro_quantity},#{order_price} / #{order_pro_quantity},#{order_discount},#{receiver}
 									,#{receiver_hp1},#{receiver_hp2},#{receiver_hp3}
@@ -73,8 +73,7 @@
  		<otherwise>
  			
  			<foreach collection="orderList" item="detailMap"  open="insert all" separator="" close="select 1 from dual">
- 			into order_info values
- 			
+ 			into order_info values  			
  			 (#{seq_order_id},#{order_member_id},#{order_member_name},
 									#{detailMap.pro_detail_code_quantity},#{detailMap.pro_detail_code_price},#{order_discount},#{receiver}
 									,#{receiver_hp1},#{receiver_hp2},#{receiver_hp3}
@@ -138,7 +137,7 @@
 			 	and o.delivery_status= #{delivery_status}
 			 </if>
 			 ) a
-			, product_image img , product p  where img.pro_code = a.pro_code and img.pro_imagefilename like '%main%'
+			, product_image img , product p  where img.pro_code = a.pro_code and img.pro_imagefiletype like '%main%'
 			and p.pro_code = a.pro_code order by a.order_code desc
 	</select>
 	

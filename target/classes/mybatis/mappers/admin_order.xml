@@ -105,7 +105,7 @@
         		</if>
         	
 			 ) a
-			, product_image img , product p  where img.pro_code = a.pro_code and img.pro_imagefilename like '%main%'
+			, product_image img , product p  where img.pro_code = a.pro_code and img.pro_imagefiletype like '%main%'
 			and p.pro_code = a.pro_code and rn between 
 			(#{section,jdbcType=NUMERIC}-1)*100+(#{pageNum,jdbcType=NUMERIC}-1)*10+1 
 		and (#{section,jdbcType=NUMERIC}-1)*100+#{pageNum,jdbcType=NUMERIC}*10

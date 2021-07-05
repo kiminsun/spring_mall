@@ -106,13 +106,16 @@ public class ColorTransForm {
 		for(int i = 0 ; i < list.length; i ++) {
 			if(list[i] != null)
 				index_list.add(i);
-//			System.out.println("index num = " + i + "  :  "  + list[i]);
+ 		System.out.println("index num = " + i + "  :  "  + list[i]);
 		}
-//		System.out.println(index_list);
+		
+       if (index_list.size() > 0 ) { 
 //		List<ProductVO> 의 첫번째 child 에게 index_list를 담고 controller에서 조회한다.
 		getvo.get(0).setIndex_list(index_list);
 //		System.out.println("index num : " + index_num + "  /  getvo.size () : " + getvo.size());
+       }
 		return getvo;
+		
 	}
 	
 	

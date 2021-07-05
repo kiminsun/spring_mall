@@ -1,5 +1,6 @@
 package com.my.spring.product.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +40,9 @@ public class ProductController {
 	ReviewService reviewService;
 	
 	@RequestMapping(value="/productlist.do", method= {RequestMethod.GET,RequestMethod.POST})
-	   public ModelAndView productlist(HttpServletRequest request ) {
+	   public ModelAndView productlist(HttpServletRequest request ) throws UnsupportedEncodingException {
+
+				
 	      final int displaypage = 5;
 	      final int displayproduct = 12;
 	      String keyword2 = (request.getParameter("keyword5") == null) ? null : request.getParameter("keyword5");
@@ -47,8 +50,14 @@ public class ProductController {
 	      int pagenum = (request.getParameter("pagenum") == null) ? 1 : Integer.parseInt(request.getParameter("pagenum")); 
 	      int min_price = (request.getParameter("min_price") == null || request.getParameter("min_price").equals("all")) ? 0 : Integer.parseInt(request.getParameter("min_price"));
 	      int max_price = min_price + 30000; if(min_price == 140000) max_price = 300000;
-	      String keyword = (request.getParameter("keyword") == null) ? "%%" : request.getParameter("keyword");
+	      String keyword = (request.getParameter("keyword") == null) ? "%%" : request.getParameter("keyword");    
+	      
+	      //keyword= new String(keyword.getBytes("UTF-8"), "EUC-KR");
+	      
+	    	  
 	      String keyword_detail = (request.getParameter("keyword_detail") == null) ? "%%" : request.getParameter("keyword_detail");
+	  
+	      
 	      String list_type = (request.getParameter("list_type") == null) ? "other" : request.getParameter("list_type");
 	      String pro_status = (request.getParameter("pro_status") == null) ? "%%" : request.getParameter("pro_status");
 	      String pro_color = (request.getParameter("pro_color") == null) ? null : request.getParameter("pro_color");
@@ -77,23 +86,35 @@ public class ProductController {
 		}catch(Exception e) {
 			allnum = 0 ;
 		}
+		System.out.println("keyword:"+ keyword);
+		System.out.println("keyword_detail:"+ keyword_detail);
+		System.out.println("allnum:"+ allnum);
+		System.out.println("pro_color:"+ pro_color);
+		
 		
 		ColorTransForm Ctf = new ColorTransForm();
 		list = Ctf.product_Color_List(list);
-		List<Integer> index_list = list.get(0).getIndex_list();
 		List<ProductVO> product_list = new ArrayList<ProductVO>();
+		
+		if (list.size() > 0 ) {
+		List<Integer> index_list = list.get(0).getIndex_list();
+		 
+		
 		int index_num = -1;
 		int i = 0;
 		
 		for(ProductVO vo : list) {
 			index_num ++;
+			if (index_list.size() >0 ) {
 			if(index_num == index_list.get(i)) {
 				product_list.add(vo);
 				i++;
 				if(i == index_list.size())
 					break;
 			}
+		    }
 		}
+	  }
 
 		int allpage = (allnum % displayproduct == 0) ? allnum / displayproduct : allnum / displayproduct + 1;
 		int startpage = (pagenum % displaypage == 0 ) ? pagenum - 4 :  pagenum - (pagenum % displaypage - 1);
